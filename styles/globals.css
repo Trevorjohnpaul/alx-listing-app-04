@@ -1,0 +1,15 @@
+/* styles/globals.css */
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
+
+/* small visual helpers */
+html,
+body,
+#__next {
+  height: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
