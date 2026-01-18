@@ -1,49 +1,29 @@
-import React from "react";
-import type { PropertyProps } from "../../interfaces";
+interface Property {
+  id: string;
+  title: string;
+  location: string;
+  price: number;
+  image: string;
+}
 
-const PropertyCard: React.FC<{ property: PropertyProps }> = ({ property }) => {
+interface PropertyCardProps {
+  property: Property;
+}
+
+export default function PropertyCard({ property }: PropertyCardProps) {
   return (
-    <article className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-      <div className="relative">
-        <img
-          src={property.image}
-          alt={property.name}
-          className="w-full h-48 object-cover"
-          loading="lazy"
-        />
-        {property.discount ? (
-          <div className="absolute left-3 top-3 bg-red-500 text-white text-xs px-2 py-1 rounded">
-            {property.discount}% off
-          </div>
-        ) : null}
-      </div>
-      <div className="p-4">
-        <h3 className="font-semibold text-lg">{property.name}</h3>
-        <div className="text-sm text-gray-500">
-          {property.address.city}, {property.address.state} ·{" "}
-          {property.address.country}
-        </div>
-        <div className="mt-2 flex items-center justify-between">
-          <div className="text-indigo-600 font-semibold">
-            KES {property.price}
-          </div>
-          <div className="text-sm text-gray-600">
-            ★ {property.rating.toFixed(2)}
-          </div>
-        </div>
-        <div className="mt-3 flex flex-wrap gap-2">
-          {property.category.map((c) => (
-            <span
-              key={c}
-              className="text-xs border px-2 py-1 rounded text-gray-600"
-            >
-              {c}
-            </span>
-          ))}
-        </div>
-      </div>
-    </article>
-  );
-};
+    <div className="border rounded-lg shadow p-4">
+      <img
+        src={property.image}
+        alt={property.title}
+        className="w-full h-48 object-cover rounded"
+      />
 
-export default PropertyCard;
+      <h3 className="text-lg font-semibold mt-2">{property.title}</h3>
+
+      <p className="text-gray-500">{property.location}</p>
+
+      <p className="text-blue-600 font-bold mt-1">${property.price} / night</p>
+    </div>
+  );
+}
